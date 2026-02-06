@@ -304,6 +304,67 @@ footer {
     margin-bottom: 4px;
 }
 
+.project-content blockquote {
+    border-left: 3px solid var(--color-border);
+    margin: 24px 0;
+    padding: 12px 20px;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.project-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.project-content hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 32px 0;
+}
+
+.project-content a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.project-content a:hover {
+    color: var(--color-text-light);
+}
+
+.project-content iframe,
+.project-content video {
+    max-width: 100%;
+    margin: 24px 0;
+    display: block;
+}
+
+.project-content .mce-preview-object {
+    max-width: 100%;
+}
+
+.project-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+}
+
+.project-content th,
+.project-content td {
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.project-content th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+.project-content s,
+.project-content del {
+    text-decoration: line-through;
+}
+
 .back-link {
     display: inline-block;
     margin-top: 48px;
