@@ -69,7 +69,7 @@ heroku run flask init-db
 ├── models.py           # SQLAlchemy Project model
 ├── requirements.txt    # Python dependencies
 ├── Procfile            # Heroku process definition
-├── runtime.txt         # Python version for Heroku
+├── .python-version     # Python version for Heroku
 ├── static/
 │   └── style.css       # Responsive grid styles
 └── templates/
