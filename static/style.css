@@ -334,6 +334,15 @@ footer {
     line-height: 1.7;
 }
 
+.about-page a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.about-page a:hover {
+    color: var(--color-text-light);
+}
+
 /* ========================================
    Login Page
    ======================================== */
