@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Day {{ project.day_number }}: {{ project.title }} — 100 Days of Making AI{% endblock %}
+
+{% block content %}
+<article class="project-page">
+    <header class="project-header">
+        <span class="project-day-label">Day {{ project.day_number }}</span>
+        <h1>{{ project.title }}</h1>
+        <time>{{ project.created_at.strftime('%B %d, %Y') }}</time>
+    </header>
+
+    {% if project.image_url %}
+    <div class="project-hero">
+        <img src="{{ project.image_url }}" alt="{{ project.title }}">
+    </div>
+    {% endif %}
+
+    <div class="project-content">
+        {{ project.content | safe }}
+    </div>
+
+    <a href="{{ url_for('index') }}" class="back-link">&larr; All Projects</a>
+</article>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{ "Edit" if project else "New" }} Project — 100 Days of Making AI{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        tinymce.init({
+            selector: '#content',
+            height: 500,
+            menubar: false,
+            plugins: 'lists link image code table',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | bullist numlist | link image | code',
+            content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; line-height: 1.6; }',
+            promotion: false,
+            license_key: 'gpl'
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="admin-edit">
+    <h1>{{ "Edit" if project else "New" }} Project</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="edit-form">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="{{ project.title if project else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="day_number">Day Number</label>
+            <input type="number" id="day_number" name="day_number" min="1" max="100"
+                   value="{{ project.day_number if project else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="image">
+                {% if project and project.image_url %}
+                    Replace Image (leave empty to keep current)
+                {% else %}
+                    Project Image
+                {% endif %}
+            </label>
+            {% if project and project.image_url %}
+                <div class="current-image">
+                    <img src="{{ project.image_url }}" alt="Current image" style="max-width: 200px;">
+                </div>
+            {% endif %}
+            <input type="file" id="image" name="image" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content">{{ project.content if project else '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{ "Update" if project else "Create" }} Project</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

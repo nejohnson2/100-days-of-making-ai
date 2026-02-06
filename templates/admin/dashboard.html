@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard — 100 Days of Making AI{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="admin-header">
+        <h1>Dashboard</h1>
+        <div class="admin-actions">
+            <a href="{{ url_for('admin_create') }}" class="btn btn-primary">+ New Project</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary">Log Out</a>
+        </div>
+    </div>
+
+    {% if projects %}
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Title</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.day_number }}</td>
+                <td><a href="{{ url_for('project_detail', slug=project.slug) }}">{{ project.title }}</a></td>
+                <td>{{ project.created_at.strftime('%Y-%m-%d') }}</td>
+                <td class="admin-actions-cell">
+                    <a href="{{ url_for('admin_edit', project_id=project.id) }}" class="btn btn-small">Edit</a>
+                    <form method="POST" action="{{ url_for('admin_delete', project_id=project.id) }}"
+                          onsubmit="return confirm('Delete this project?');" style="display:inline;">
+                        <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty-state">No projects yet. <a href="{{ url_for('admin_create') }}">Create your first one.</a></p>
+    {% endif %}
+</div>
+{% endblock %}

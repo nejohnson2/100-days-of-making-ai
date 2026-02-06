@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}About — 100 Days of Making AI{% endblock %}
+
+{% block content %}
+<article class="about-page">
+    <h1>About</h1>
+    <p>
+        <strong>100 Days of Making AI</strong> is a creative challenge by
+        <a href="https://www.nejohnson2.com/" target="_blank" rel="noopener">Nicholas E. Johnson</a>.
+    </p>
+    <p>
+        Each day for 100 days, I spend 1.5 hours building an AI tool or project.
+        The goal isn't perfection &mdash; it's practice. Each project is self-contained
+        and completed within the session. What matters is showing up and making something.
+    </p>
+    <p>
+        This site documents every project along the way. Click any tile on the
+        <a href="{{ url_for('index') }}">home page</a> to read about that day's creation.
+    </p>
+</article>
+{% endblock %}
