@@ -37,6 +37,12 @@
         </div>
 
         <div class="form-group">
+            <label for="project_date">Date</label>
+            <input type="date" id="project_date" name="project_date"
+                   value="{{ project.created_at.strftime('%Y-%m-%d') if project else '' }}" required>
+        </div>
+
+        <div class="form-group">
             <label for="image">
                 {% if project and project.image_url %}
                     Replace Image (leave empty to keep current)

@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from functools import wraps
 
 import cloudinary
@@ -126,12 +127,16 @@ def admin_create():
         if existing:
             slug = f"{slug}-day-{day_number}"
 
+        project_date = request.form.get("project_date")
+        created_at = datetime.strptime(project_date, "%Y-%m-%d") if project_date else None
+
         project = Project(
             title=title,
             slug=slug,
             day_number=day_number,
             image_url=image_url,
             content=content,
+            created_at=created_at,
         )
         db.session.add(project)
         db.session.commit()
@@ -150,6 +155,10 @@ def admin_edit(project_id):
         project.title = request.form.get("title", "").strip()
         project.day_number = request.form.get("day_number", type=int)
         project.content = request.form.get("content", "")
+
+        project_date = request.form.get("project_date")
+        if project_date:
+            project.created_at = datetime.strptime(project_date, "%Y-%m-%d")
 
         image = request.files.get("image")
         if image and image.filename:
